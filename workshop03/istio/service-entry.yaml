@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name:  hackernews-svc-entry
+  namespace: default
+spec:
+  hosts:
+  - "hacker-news.firebaseio.com"
+  ports:
+  - number: 80
+    protocol: http
+    name : http
+  - number: 443
+    protocol: https
+    name : https
+  location: MESH_EXTERNAL
+  resolution: DNS

@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: wakki-vs1
+  namespace: default
+spec:
+  hosts:
+  - "wakki.157.230.74.199.nip.io"
+  gateways:
+  - wakki-ingress
+  http:
+  - match:
+    - uri:
+        exact: /v1/hello
+    rewrite:
+      uri: /hello
+    route:
+    - destination:
+        host: demopythonappsvc
+        subset: version-1
+  - match:
+    - uri:
+        exact: /v2/hello
+    rewrite:
+      uri: /hello
+    route:
+    - destination:
+        host: demopythonappsvc
+        subset: version-2
+  - match:
+    - uri:
+        exact: /v3
+    rewrite:
+      uri: /topstories
+    route:
+    - destination:
+        host: demopythonappsvc
+        subset: version-3

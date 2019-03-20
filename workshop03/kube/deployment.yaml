@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demopythonappdp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demopythonappdp
+        version: v1
+    spec:
+      containers:
+      - name: demopythonappcontainer
+        image: wakki83/istio-demo:v2
+        imagePullPolicy: Always
+        env:
+          - name: SERVICE_VERSION
+            value: v1
+        ports:
+          - containerPort: 6000
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demopythonappdp2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demopythonappdp
+        version: v2
+    spec:
+      containers:
+      - name: demopythonappcontainer
+        image: wakki83/istio-demo:v2
+        imagePullPolicy: Always
+        env:
+          - name: SERVICE_VERSION
+            value: v2
+        ports:
+          - containerPort: 6000
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demopythonappdp3
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demopythonappdp
+        version: v3
+    spec:
+      containers:
+      - name: demopythonappcontainer
+        image: balanus/demopythonapp:api
+        imagePullPolicy: Always
+        env:
+          - name: SERVICE_VERSION
+            value: v3-has-feature-to-call-hacker-news
+        ports:
+          - containerPort: 6000
+

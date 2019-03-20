@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: wakki-ingress
+  namespace: default
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts: 
+    - wakki.157.230.74.199.nip.io
+    port:
+      number: 80
+      protocol: HTTP
+      name: HTTP

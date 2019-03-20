@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name:  wakki-dr1
+  namespace: default
+spec:
+  host: demopythonappsvc
+  subsets:
+  - labels:
+      version: v1
+    name: version-1
+  - labels:
+      version: v2
+    name: version-2
+  - labels:
+      version: v3
+    name: version-3
